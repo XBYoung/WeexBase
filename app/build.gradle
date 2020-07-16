@@ -63,10 +63,10 @@ android {
     //签名
     signingConfigs {
         debug {
-            storeFile file(project.KEYSTORE_RELEASE)
-            storePassword project.KEYSTORE_RELEASE_PASSWORD
-            keyAlias project.KEYSTORE_RELEASE_ALIAS
-            keyPassword project.KEYSTORE_RELEASE_ALIAS_PASSWORD
+            storeFile file(project.KEYSTORE_DEBUG)
+            storePassword project.KEYSTORE_DEBUG_PASSWORD
+            keyAlias project.KEYSTORE_DEBUG_ALIAS
+            keyPassword project.KEYSTORE_DEBUG_ALIAS_PASSWORD
         }
         release {
             storeFile file(project.KEYSTORE_RELEASE)
