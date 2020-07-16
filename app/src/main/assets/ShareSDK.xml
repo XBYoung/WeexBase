@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DevInfor>
+
+	<ShareSDK
+		AppKey = "223d9c1eb835c"/>
+
+	<Wechat
+        Id="3"
+        SortId="3"
+        AppId="wx4d840727d618f1ea"
+        AppSecret="9dc84334ffb62324ce71e66c523c98d7"
+        BypassApproval="false"
+        Enable="true" />
+    
+    <WechatMoments
+        Id="4"
+        SortId="4"
+        AppId="wx4d840727d618f1ea"
+        AppSecret="9dc84334ffb62324ce71e66c523c98d7"
+        BypassApproval="false"
+        Enable="true" />
+
+
+	<QQ
+        Id="1"
+        SortId="1"
+		AppId="101623740"
+		AppKey="c6a167858222eb970bddbb70ed608ee1"
+        ShareByAppClient="true"
+        Enable="true" />
+
+	<QZone
+		Id="2"
+		SortId="2"
+		AppId="101623740"
+		AppKey="c6a167858222eb970bddbb70ed608ee1"
+		ShareByAppClient="true"
+		Enable="true" />
+	
+</DevInfor>

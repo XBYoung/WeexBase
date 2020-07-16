@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#6B9EFD"
+    android:fitsSystemWindows="true"
+    tools:context=".ui.activity.WelcomeActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerInside"
+        android:src="@drawable/bg_welcome" />
+
+    <!--  <ImageView
+          android:layout_width="160dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="180dp"
+          android:layout_centerHorizontal="true"
+          android:src="@mipmap/logo_text"/>
+
+      <TextView
+          android:id="@+id/logo_text"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_centerHorizontal="true"
+          android:layout_marginTop="150dp"
+          android:textColor="#323232"
+          android:textSize="38sp"
+          android:textStyle="bold"
+          android:text="@string/app_name"/>
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_centerHorizontal="true"
+          android:layout_marginTop="30dp"
+          android:layout_below="@+id/logo_text"
+          android:textColor="#323232"
+          android:textSize="20sp"
+          android:text=""/>
+
+      <ImageView
+          android:visibility="gone"
+          android:layout_width="100dp"
+          android:layout_height="50dp"
+          android:layout_marginBottom="20dp"
+          android:layout_centerHorizontal="true"
+          android:layout_alignParentBottom="true"
+          android:src="@mipmap/logo_bottom"/>-->
+</RelativeLayout>

@@ -1,0 +1,183 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.aliyun.ams.emas-services'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'android-aspectjx'
+//apply plugin: 'com.hujiang.android-aspectjx'
+
+//apply from: 'http://172.20.227.37:8080/download_jsc.gradle'
+
+
+android {
+
+
+    android.applicationVariants.all {
+        variant ->
+            variant.outputs.all {
+                outputFileName = productFlavors[0].name + "_" + buildType.name + "_v" + defaultConfig.versionName + ".apk"
+            }
+    }
+
+    aspectjx {
+        //关闭AspectJX功能
+
+        enabled true
+        //排除所有package路径中包含`android.support`的class文件及库（jar文件）
+        exclude 'android.support'
+        exclude 'com.alibaba'
+        exclude 'org.apache.weex'
+        exclude 'com.aliyun'
+        exclude 'com.taobao'
+        exclude 'alibaba'
+    }
+    packagingOptions {
+        exclude 'META-INF/proguard/coroutines.pro'
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+
+    compileSdkVersion Integer.parseInt(project.COMPILE_SDK_VERSION)
+
+    defaultConfig {
+        applicationId project.APPLICATION_PACKAGE_NAME
+        minSdkVersion Integer.parseInt(project.MIN_SDK_VERSION)
+        targetSdkVersion Integer.parseInt(project.TARGET_SDK_VERSION)
+        versionCode Integer.parseInt(project.APP_VERSION_CODE)
+        versionName project.APP_VERSION_NAME
+        multiDexEnabled true
+        /**
+         * 必须加，否则64位手机无法加载so文件
+         */
+        ndk {
+
+            // abiFilters "armeabi", "x86"
+            abiFilters "armeabi-v7a", "arm64-v8a", "x86"
+        }
+
+    }
+
+    //签名
+    signingConfigs {
+        debug {
+            storeFile file(project.KEYSTORE_RELEASE)
+            storePassword project.KEYSTORE_RELEASE_PASSWORD
+            keyAlias project.KEYSTORE_RELEASE_ALIAS
+            keyPassword project.KEYSTORE_RELEASE_ALIAS_PASSWORD
+        }
+        release {
+            storeFile file(project.KEYSTORE_RELEASE)
+            storePassword project.KEYSTORE_RELEASE_PASSWORD
+            keyAlias project.KEYSTORE_RELEASE_ALIAS
+            keyPassword project.KEYSTORE_RELEASE_ALIAS_PASSWORD
+        }
+    }
+
+    buildTypes {
+        debug {
+
+            //本地接口调用地址
+            buildConfigField 'String', 'BASE_URL', project.BASE_URL
+            //页面地址
+            buildConfigField 'String', 'BASE_PAGE_URL', project.BSAE_PAGE_URL
+            //log开关
+            buildConfigField 'boolean', 'LOG_SWITCH', project.LOG_SWITCH_DEBUG
+            //签名配置
+            signingConfig signingConfigs.debug
+            //是否混淆
+            minifyEnabled false
+            //混淆规则
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            //本地接口调用地址
+            buildConfigField 'String', 'BASE_URL', project.BASE_URL
+            //页面地址
+            buildConfigField 'String', 'BASE_PAGE_URL', project.BSAE_PAGE_URL
+            //log开关
+            buildConfigField 'boolean', 'LOG_SWITCH', project.LOG_SWITCH_RELEASE
+            //签名配置
+            signingConfig signingConfigs.release
+            //是否混淆
+            minifyEnabled false
+            //混淆规则
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    //为了映入so
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+    }
+    flavorDimensions "fireadmin"
+    //多渠道打包
+    productFlavors {
+        //自己平台
+        fireadmin {
+            manifestPlaceholders = [MTA_APPKEY: "A56RS3BY9HAS", MTA_CHANNEL: "fireadmin", PACKAGE_NAME: project.APPLICATION_PACKAGE_NAME]
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+    aspectjx {
+        exclude 'androidx', 'com.google', 'com.squareup', 'com.alipay', 'org.apache'
+    }
+}
+
+dependencies {
+    //配置依赖
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    //系统级依赖
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    //网络请求依赖
+    implementation files('libs/httpmime-4.1.2.jar')
+    implementation files('libs/org.apache.http.legacy.jar')
+    // implementation files('libs/com.taobao.http.legacy.jar')
+    //gson 依赖
+    implementation 'com.google.code.gson:gson:2.8.2'
+    //gif 依赖
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.1'
+    //weex 依赖
+    implementation 'com.alibaba:fastjson:1.1.46.android'
+    implementation 'org.apache.weex:sdk:0.28.0'
+
+    //mid  jar包 必须添加
+    implementation 'com.tencent.mid:mid:4.06-Release'
+    implementation 'com.github.hotchemi:permissionsdispatcher:3.1.0'
+    kapt 'com.github.hotchemi:permissionsdispatcher-processor:3.1.0'
+    implementation 'org.xutils:xutils:3.8.4'
+    implementation 'com.taobao.android.weex_inspection:urlconnection_interceptor:1.0.0'
+    implementation 'com.taobao.android.weex_inspection:protocol:1.1.4.1'
+    //implementation 'com.taobao.android:weex_inspector:0.24.2.4'
+    implementation 'com.facebook.fresco:fresco:0.10.0'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    kapt 'com.github.bumptech.glide:compiler:4.8.0'
+    implementation 'androidx.multidex:multidex:2.0.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.6'
+    testImplementation 'junit:junit:4.12'
+    implementation "androidx.lifecycle:lifecycle-extensions:2.0.0"
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+}

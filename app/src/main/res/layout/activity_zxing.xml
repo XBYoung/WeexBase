@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@android:color/white"
+    android:id="@+id/weex_content"
+    tools:context=".weex.zxing.ZxingActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:orientation="vertical"
+        android:background="#19B5FE"
+        android:id="@+id/weex_title">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="#FFFFFF"
+            android:textSize="17sp"
+            android:gravity="center"
+            android:text="扫一扫"/>
+        <ImageView
+            android:id="@+id/title_back"
+            android:onClick="toBack"
+            android:layout_width="@dimen/title_height"
+            android:layout_height="@dimen/title_height"
+
+            android:scaleType="center"/>
+        <TextView
+            android:id="@+id/to_album"
+            android:layout_width="@dimen/title_height"
+            android:layout_height="@dimen/title_height"
+            android:layout_alignParentRight="true"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:onClick="toAlbum"
+            android:text="相册"/>
+    </RelativeLayout>
+    <com.journeyapps.barcodescanner.DecoratedBarcodeView
+        android:id="@+id/zxing_barcode_scanner"
+        android:layout_marginTop="@dimen/title_height"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</FrameLayout>

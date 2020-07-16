@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#262c41</color>
+    <color name="colorPrimaryDark">#262c41</color>
+    <color name="colorAccent">#19B5FE</color>
+
+    <!--主题颜色 #19B5FE-->
+    <color name="themeColor">#262c41</color>
+
+    <!-- 确认弹框颜色 -->
+    <color name="dialog_confirm_text">#666666</color>
+
+    <!-- 更新包下载进度条颜色值 -->
+    <color name="dialog_down_progressbar_color">#19B5FE</color>
+    <color name="dialog_down_progressbar_color_bg">#CCCCCC</color>
+    <color name="gray_light">#B3FFFFFF</color>
+    <color name="orange_portrait">#FD2A05</color>
+    <color name="shadow_color">#7F000000</color>
+    <color name="white">#ffffffff</color>
+    <color name="red">#aacc0000</color>
+
+</resources>

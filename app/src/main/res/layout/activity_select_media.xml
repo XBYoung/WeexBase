@@ -1,0 +1,151 @@
+<com.young.weexbase.weex.medialoader.slidinguppanel.SlidingUpPanelLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:sliding="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/sliding_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="bottom"
+    sliding:umanoDragView="@+id/dragView"
+    sliding:umanoPanelHeight="50dp"
+    sliding:umanoScrollableView="@+id/SlidingRecyclerView"
+    android:fitsSystemWindows="true"
+    android:background="#FFFFFF">
+    <!--主页面-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/layout_title"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/layout_title_left"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:gravity="center"
+                android:paddingLeft="12dp"
+                android:paddingRight="16dp"
+                android:src="@mipmap/ic_launcher_android_round"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/layout_title_text"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLength="15"
+                android:singleLine="true"
+                android:text="最近"
+                android:textColor="#2E2400"
+                android:textSize="18sp"
+                android:typeface="monospace" />
+
+            <TextView
+                android:id="@+id/layout_title_right"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:drawablePadding="2dp"
+                android:gravity="center"
+                android:padding="12dp"
+                android:text="更多"
+                android:textColor="#2E2400"
+                android:textSize="15dp" />
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/RecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/layout_title" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/below_shadow" />
+
+        <View
+            android:id="@+id/mainViewPage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+    <!--拉起页面-->
+    <RelativeLayout
+        android:id="@+id/dragView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/layout_sliding_title"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical|left"
+            android:orientation="horizontal"
+            android:background="@color/white"
+            android:paddingLeft="10dp">
+
+            <TextView
+                android:id="@+id/layout_sliding_title_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="相册"
+                android:textColor="#2E2400"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:id="@+id/sliding_confirm_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/sliding_confirm_num"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginLeft="20dp"
+                    android:paddingBottom="2dp"
+                    android:background="@drawable/medialoader_selectnum_bg"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="@color/themeColor"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:id="@+id/sliding_confirm_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="20dp"
+                    android:gravity="center"
+                    android:text="确定"
+                    android:textColor="#2E2400"
+                    android:textSize="18sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/SlidingRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/layout_sliding_title" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/below_shadow" />
+    </RelativeLayout>
+</com.young.weexbase.weex.medialoader.slidinguppanel.SlidingUpPanelLayout>
